@@ -312,7 +312,7 @@
                     ]
                 }
             ],
-            "deployment": {
+            "outputs": {
                 "parameters": {
                     "_artifactsLocation": "[steps('basics')._artifactsLocation]",
                     "_artifactsLocationSasToken": "[steps('basics')._artifactsLocationSasToken]",
@@ -333,10 +333,7 @@
                 },
                 "kind": "ResourceGroup",
                 "location": "[steps('basics').resourceScope.location.name]",
-                "resourceGroupId": "[steps('basics').resourceScope.resourceGroup.id]",
-                "template": {
-                    "file": "<ARM deployment template relative path>"
-                }
+                "resourceGroupId": "[steps('basics').resourceScope.resourceGroup.id]"
             }
         }
     }
