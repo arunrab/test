@@ -1,0 +1,343 @@
+{
+    "$schema": "<relative path to dx.schema.json>",
+    "view": {
+        "kind": "Form",
+        "properties": {
+            "title": "Test Form View",
+            "steps": [{
+                    "name": "basics",
+                    "label": "Basics",
+                    "elements": [{
+                            "name": "resourceScope",
+                            "type": "Microsoft.Common.ResourceScope",
+                            "location": {
+                                "resourceTypes": [
+                                    "microsoft.resources/resourcegroups"
+                                ]
+                            }
+                        }, {
+                            "name": "_artifactsLocation",
+                            "type": "Microsoft.Common.TextBox",
+                            "label": "_artifacts Location",
+                            "defaultValue": "https://raw.githubusercontent.com/Azure/Moodle/master/",
+                            "toolTip": "The base URI where artifacts required by this template are located. When the template is deployed using the accompanying scripts, a private location in the subscription will be used and this value will be automatically generated.",
+                            "constraints": {
+                                "required": false,
+                                "regex": "",
+                                "validationMessage": ""
+                            },
+                            "visible": true
+                        }, {
+                            "name": "_artifactsLocationSasToken",
+                            "type": "Microsoft.Common.PasswordBox",
+                            "label": {
+                                "password": "_artifacts Location Sas Token",
+                                "confirmPassword": "Confirm password"
+                            },
+                            "toolTip": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated.",
+                            "constraints": {
+                                "required": false,
+                                "regex": "",
+                                "validationMessage": ""
+                            },
+                            "options": {
+                                "hideConfirmation": true
+                            },
+                            "visible": true
+                        }, {
+                            "name": "selectSkuType",
+                            "type": "Microsoft.Common.DropDown",
+                            "label": "Select Moodle type",
+                            "defaultValue": "",
+                            "toolTip": "Select from among different profiles of Moodle",
+                            "constraints": {
+                                "required": true,
+                                "allowedValues": [{
+                                        "label": "Minimal",
+                                        "value": "Minimal"
+                                    }, {
+                                        "label": "Maximal",
+                                        "value": "Maximal"
+                                    }
+                                ]
+                            },
+                            "visible": true
+                        }, {
+                            "name": "redisDeploySwitch",
+                            "type": "Microsoft.Common.DropDown",
+                            "label": "Redis Deploy Switch",
+                            "defaultValue": "false",
+                            "toolTip": "Switch to deploy a redis cache or not. Note that certain versions of Moodle (e.g., 3.1) don't work well with Redis, so use this only for known well-working Moodle versions (e.g., 3.4).",
+                            "constraints": {
+                                "required": false,
+                                "allowedValues": [{
+                                        "label": "true",
+                                        "value": true
+                                    }, {
+                                        "label": "false",
+                                        "value": false
+                                    }
+                                ]
+                            },
+                            "visible": true
+                        }, {
+                            "name": "sshPublicKey",
+                            "type": "Microsoft.Common.TextBox",
+                            "label": "Ssh Public Key",
+                            "defaultValue": "",
+                            "toolTip": "ssh public key",
+                            "constraints": {
+                                "required": true,
+                                "regex": "",
+                                "validationMessage": ""
+                            },
+                            "visible": true
+                        }, {
+                            "name": "autoscaleVmSku",
+                            "type": "Microsoft.Common.TextBox",
+                            "label": "Autoscale Vm Sku",
+                            "defaultValue": "Standard_DS2_v2",
+                            "toolTip": "VM size for autoscaled web VMs",
+                            "constraints": {
+                                "required": false,
+                                "regex": "",
+                                "validationMessage": ""
+                            },
+                            "visible": true
+                        }, {
+                            "name": "autoscaleVmCountMax",
+                            "type": "Microsoft.Common.TextBox",
+                            "label": "Autoscale Vm Count Max",
+                            "defaultValue": "10",
+                            "toolTip": "Maximum number of autoscaled web VMs",
+                            "constraints": {
+                                "required": false,
+                                "regex": "",
+                                "validationMessage": ""
+                            },
+                            "visible": true
+                        }, {
+                            "name": "osDiskStorageType",
+                            "type": "Microsoft.Common.DropDown",
+                            "label": "Os Disk Storage Type",
+                            "defaultValue": "Premium_LRS",
+                            "toolTip": "Azure storage type for all VMs' OS disks. With htmlLocalCopySwith true, Premium_LRS (SSD) is strongly recommended, as PHP files will be served from OS disks.",
+                            "constraints": {
+                                "required": false,
+                                "allowedValues": [{
+                                        "label": "Premium_LRS",
+                                        "value": "Premium_LRS"
+                                    }, {
+                                        "label": "Standard_LRS",
+                                        "value": "Standard_LRS"
+                                    }
+                                ]
+                            },
+                            "visible": true
+                        }, {
+                            "name": "fileServerType",
+                            "type": "Microsoft.Common.DropDown",
+                            "label": "File Server Type",
+                            "defaultValue": "nfs",
+                            "toolTip": "File server type: GlusterFS, NFS, and NFS-HA (2-VM highly available NFS cluster)",
+                            "constraints": {
+                                "required": false,
+                                "allowedValues": [{
+                                        "label": "gluster",
+                                        "value": "gluster"
+                                    }, {
+                                        "label": "nfs",
+                                        "value": "nfs"
+                                    }, {
+                                        "label": "nfs-ha",
+                                        "value": "nfs-ha"
+                                    }, {
+                                        "label": "nfs-byo",
+                                        "value": "nfs-byo"
+                                    }, {
+                                        "label": "azurefiles",
+                                        "value": "azurefiles"
+                                    }
+                                ]
+                            },
+                            "visible": true
+                        }, {
+                            "name": "OSDiskSizeInGB",
+                            "type": "Microsoft.Common.TextBox",
+                            "label": "OS Disk Size In GB",
+                            "defaultValue": "256",
+                            "toolTip": "OS disk size per Webserver in VMSS",
+                            "constraints": {
+                                "required": false,
+                                "regex": "",
+                                "validationMessage": ""
+                            },
+                            "visible": true
+                        }, {
+                            "name": "fileServerDiskSize",
+                            "type": "Microsoft.Common.TextBox",
+                            "label": "File Server Disk Size",
+                            "defaultValue": "127",
+                            "toolTip": "Size per disk for gluster nodes or nfs server",
+                            "constraints": {
+                                "required": false,
+                                "regex": "",
+                                "validationMessage": ""
+                            },
+                            "visible": true
+                        }, {
+                            "name": "storageAccountType",
+                            "type": "Microsoft.Common.DropDown",
+                            "label": "Storage Account Type",
+                            "defaultValue": "Standard_LRS",
+                            "toolTip": "Storage Account type. This storage account is only for the Moodle ObjectFS plugin and/or the (currently disabled) Azure Files file share option",
+                            "constraints": {
+                                "required": false,
+                                "allowedValues": [{
+                                        "label": "Standard_LRS",
+                                        "value": "Standard_LRS"
+                                    }, {
+                                        "label": "Standard_GRS",
+                                        "value": "Standard_GRS"
+                                    }, {
+                                        "label": "Standard_ZRS",
+                                        "value": "Standard_ZRS"
+                                    }, {
+                                        "label": "Premium_LRS",
+                                        "value": "Premium_LRS"
+                                    }
+                                ]
+                            },
+                            "visible": true
+                        }, {
+                            "name": "searchType",
+                            "type": "Microsoft.Common.DropDown",
+                            "label": "Search Type",
+                            "defaultValue": "none",
+                            "toolTip": "options of moodle global search",
+                            "constraints": {
+                                "required": false,
+                                "allowedValues": [{
+                                        "label": "none",
+                                        "value": "none"
+                                    }, {
+                                        "label": "azure",
+                                        "value": "azure"
+                                    }, {
+                                        "label": "elastic",
+                                        "value": "elastic"
+                                    }
+                                ]
+                            },
+                            "visible": true
+                        }, {
+                            "name": "mysqlPgresVcores",
+                            "type": "Microsoft.Common.DropDown",
+                            "label": "Mysql Pgres Vcores",
+                            "defaultValue": "2",
+                            "toolTip": "MySql/Postgresql vCores. For Basic tier, only 1 & 2 are allowed. For GeneralPurpose tier, 2, 4, 8, 16, 32 are allowed. For MemoryOptimized, 2, 4, 8, 16 are allowed.",
+                            "constraints": {
+                                "required": false,
+                                "allowedValues": [{
+                                        "label": "1",
+                                        "value": "1"
+                                    }, {
+                                        "label": "2",
+                                        "value": "2"
+                                    }, {
+                                        "label": "4",
+                                        "value": "4"
+                                    }, {
+                                        "label": "8",
+                                        "value": "8"
+                                    }, {
+                                        "label": "16",
+                                        "value": "16"
+                                    }, {
+                                        "label": "32",
+                                        "value": "32"
+                                    }
+                                ]
+                            },
+                            "visible": true
+                        }, {
+                            "name": "mysqlPgresStgSizeGB",
+                            "type": "Microsoft.Common.TextBox",
+                            "label": "Mysql Pgres Stg Size GB",
+                            "defaultValue": "125",
+                            "toolTip": "MySql/Postgresql storage size in GB. Minimum 5GB, increase by 1GB, up to 1TB (1024 GB)",
+                            "constraints": {
+                                "required": false,
+                                "regex": "",
+                                "validationMessage": ""
+                            },
+                            "visible": true
+                        }, {
+                            "name": "loadBalancerSku",
+                            "type": "Microsoft.Common.DropDown",
+                            "label": "Load Balancer Sku",
+                            "defaultValue": "Standard",
+                            "toolTip": "Loadbalancer SKU",
+                            "constraints": {
+                                "required": false,
+                                "allowedValues": [{
+                                        "label": "Basic",
+                                        "value": "Basic"
+                                    }, {
+                                        "label": "Standard",
+                                        "value": "Standard"
+                                    }
+                                ]
+                            },
+                            "visible": true
+                        }, {
+                            "name": "azureBackupSwitch",
+                            "type": "Microsoft.Common.DropDown",
+                            "label": "Azure Backup Switch",
+                            "defaultValue": "false",
+                            "toolTip": "Switch to configure AzureBackup and enlist VM's",
+                            "constraints": {
+                                "required": false,
+                                "allowedValues": [{
+                                        "label": "true",
+                                        "value": true
+                                    }, {
+                                        "label": "false",
+                                        "value": false
+                                    }
+                                ]
+                            },
+                            "visible": true
+                        }
+                    ]
+                }
+            ],
+            "deployment": {
+                "parameters": {
+                    "_artifactsLocation": "[steps('basics')._artifactsLocation]",
+                    "_artifactsLocationSasToken": "[steps('basics')._artifactsLocationSasToken]",
+                    "azureBackupSwitch": "[steps('basics').azureBackupSwitch]",
+                    "redisDeploySwitch": "[steps('basics').redisDeploySwitch]",
+                    "sshPublicKey": "[steps('basics').sshPublicKey]",
+                    "autoscaleVmSku": "[steps('basics').autoscaleVmSku]",
+                    "autoscaleVmCountMax": "[steps('basics').autoscaleVmCountMax]",
+                    "osDiskStorageType": "[steps('basics').osDiskStorageType]",
+                    "mysqlPgresVcores": "[steps('basics').mysqlPgresVcores]",
+                    "mysqlPgresStgSizeGB": "[steps('basics').mysqlPgresStgSizeGB]",
+                    "fileServerType": "[steps('basics').fileServerType]",
+                    "OSDiskSizeInGB": "[steps('basics').OSDiskSizeInGB]",
+                    "fileServerDiskSize": "[steps('basics').fileServerDiskSize]",
+                    "storageAccountType": "[steps('basics').storageAccountType]",
+                    "searchType": "[steps('basics').searchType]",
+                    "loadBalancerSku": "[steps('basics').loadBalancerSku]"
+                },
+                "kind": "ResourceGroup",
+                "location": "[steps('basics').resourceScope.location.name]",
+                "resourceGroupId": "[steps('basics').resourceScope.resourceGroup.id]",
+                "template": {
+                    "file": "<ARM deployment template relative path>"
+                }
+            }
+        }
+    }
+}
