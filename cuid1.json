@@ -45,7 +45,7 @@
                             },
                             "visible": true
                         }, {
-                            "name": "selectSkuType",
+                            "name": "moodleType",
                             "type": "Microsoft.Common.DropDown",
                             "label": "Select Moodle type",
                             "defaultValue": "",
@@ -53,11 +53,14 @@
                             "constraints": {
                                 "required": true,
                                 "allowedValues": [{
-                                        "label": "Minimal",
-                                        "value": "Minimal"
+                                        "label": "Large - High Availability",
+                                        "value": "largeHa"
                                     }, {
                                         "label": "Maximal",
-                                        "value": "Maximal"
+                                        "value": "maximal"
+                                    },  {
+                                        "label": "Small to Mid",
+                                        "value": "smallToMid"
                                     }
                                 ]
                             },
@@ -103,7 +106,7 @@
                                 "regex": "",
                                 "validationMessage": ""
                             },
-                            "visible": true
+                            "visible": "[or(equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
                         }, {
                             "name": "autoscaleVmCountMax",
                             "type": "Microsoft.Common.TextBox",
@@ -115,7 +118,7 @@
                                 "regex": "",
                                 "validationMessage": ""
                             },
-                            "visible": true
+                            "visible": "[equals(steps('basics').moodleType,'largeHa')]"
                         }, {
                             "name": "osDiskStorageType",
                             "type": "Microsoft.Common.DropDown",
@@ -133,12 +136,12 @@
                                     }
                                 ]
                             },
-                            "visible": true
+                            "visible": false
                         }, {
                             "name": "fileServerType",
                             "type": "Microsoft.Common.DropDown",
                             "label": "File Server Type",
-                            "defaultValue": "nfs",
+                            "defaultValue": "azurefiles",
                             "toolTip": "File server type: GlusterFS, NFS, and NFS-HA (2-VM highly available NFS cluster)",
                             "constraints": {
                                 "required": false,
@@ -160,7 +163,7 @@
                                     }
                                 ]
                             },
-                            "visible": true
+                            "visible": "[or(equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
                         }, {
                             "name": "OSDiskSizeInGB",
                             "type": "Microsoft.Common.TextBox",
@@ -172,7 +175,7 @@
                                 "regex": "",
                                 "validationMessage": ""
                             },
-                            "visible": true
+                            "visible": "[or(equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
                         }, {
                             "name": "fileServerDiskSize",
                             "type": "Microsoft.Common.TextBox",
@@ -184,7 +187,7 @@
                                 "regex": "",
                                 "validationMessage": ""
                             },
-                            "visible": true
+                            "visible": "[or(equals(steps('basics').moodleType,'smallToMid'), equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
                         }, {
                             "name": "storageAccountType",
                             "type": "Microsoft.Common.DropDown",
@@ -208,7 +211,7 @@
                                     }
                                 ]
                             },
-                            "visible": true
+                            "visible": "[or(equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
                         }, {
                             "name": "searchType",
                             "type": "Microsoft.Common.DropDown",
@@ -229,7 +232,7 @@
                                     }
                                 ]
                             },
-                            "visible": true
+                            "visible": "[or(equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
                         }, {
                             "name": "mysqlPgresVcores",
                             "type": "Microsoft.Common.DropDown",
@@ -259,7 +262,7 @@
                                     }
                                 ]
                             },
-                            "visible": true
+                            "visible": "[or(equals(steps('basics').moodleType,'smallToMid'), equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
                         }, {
                             "name": "mysqlPgresStgSizeGB",
                             "type": "Microsoft.Common.TextBox",
@@ -271,7 +274,7 @@
                                 "regex": "",
                                 "validationMessage": ""
                             },
-                            "visible": true
+                            "visible": "[or(equals(steps('basics').moodleType,'smallToMid'), equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
                         }, {
                             "name": "loadBalancerSku",
                             "type": "Microsoft.Common.DropDown",
@@ -289,7 +292,7 @@
                                     }
                                 ]
                             },
-                            "visible": true
+                            "visible": "[or(equals(steps('basics').moodleType,'minimal'), equals(steps('basics').moodleType,'largeHa'))]"
                         }, {
                             "name": "azureBackupSwitch",
                             "type": "Microsoft.Common.DropDown",
@@ -307,7 +310,7 @@
                                     }
                                 ]
                             },
-                            "visible": true
+                            "visible": "[equals(steps('basics').moodleType,'maximal')]"
                         }
                     ]
                 }
