@@ -1,5 +1,5 @@
 {
-    "$schema": "<relative path to createFormUI.schema.json>",
+    "$schema": ".\\createFormUI.schema.json",
     "view": {
         "kind": "Form",
         "properties": {
@@ -311,30 +311,31 @@
                         }
                     ]
                 }
-            ],
-            "outputs": {
-                "parameters": {
-                    "_artifactsLocation": "[steps('basics')._artifactsLocation]",
-                    "_artifactsLocationSasToken": "[steps('basics')._artifactsLocationSasToken]",
-                    "azureBackupSwitch": "[steps('basics').azureBackupSwitch]",
-                    "redisDeploySwitch": "[steps('basics').redisDeploySwitch]",
-                    "sshPublicKey": "[steps('basics').sshPublicKey]",
-                    "autoscaleVmSku": "[steps('basics').autoscaleVmSku]",
-                    "autoscaleVmCountMax": "[steps('basics').autoscaleVmCountMax]",
-                    "osDiskStorageType": "[steps('basics').osDiskStorageType]",
-                    "mysqlPgresVcores": "[steps('basics').mysqlPgresVcores]",
-                    "mysqlPgresStgSizeGB": "[steps('basics').mysqlPgresStgSizeGB]",
-                    "fileServerType": "[steps('basics').fileServerType]",
-                    "OSDiskSizeInGB": "[steps('basics').OSDiskSizeInGB]",
-                    "fileServerDiskSize": "[steps('basics').fileServerDiskSize]",
-                    "storageAccountType": "[steps('basics').storageAccountType]",
-                    "searchType": "[steps('basics').searchType]",
-                    "loadBalancerSku": "[steps('basics').loadBalancerSku]"
-                },
-                "kind": "ResourceGroup",
-                "location": "[steps('basics').resourceScope.location.name]",
-                "resourceGroupId": "[steps('basics').resourceScope.resourceGroup.id]"
-            }
+            ]
+        },
+        "outputs": {
+            "parameters": {
+                "_artifactsLocation": "[steps('basics')._artifactsLocation]",
+                "_artifactsLocationSasToken": "[steps('basics')._artifactsLocationSasToken]",
+                "azureBackupSwitch": "[steps('basics').azureBackupSwitch]",
+                "redisDeploySwitch": "[steps('basics').redisDeploySwitch]",
+                "sshPublicKey": "[steps('basics').sshPublicKey]",
+                "autoscaleVmSku": "[steps('basics').autoscaleVmSku]",
+                "autoscaleVmCountMax": "[steps('basics').autoscaleVmCountMax]",
+                "osDiskStorageType": "[steps('basics').osDiskStorageType]",
+                "mysqlPgresVcores": "[steps('basics').mysqlPgresVcores]",
+                "mysqlPgresStgSizeGB": "[steps('basics').mysqlPgresStgSizeGB]",
+                "fileServerType": "[steps('basics').fileServerType]",
+                "OSDiskSizeInGB": "[steps('basics').OSDiskSizeInGB]",
+                "fileServerDiskSize": "[steps('basics').fileServerDiskSize]",
+                "storageAccountType": "[steps('basics').storageAccountType]",
+                "searchType": "[steps('basics').searchType]",
+                "loadBalancerSku": "[steps('basics').loadBalancerSku]"
+            },
+            "kind": "ResourceGroup",
+            "location": "[steps('basics').resourceScope.location.name]",
+            "resourceGroupId": "[steps('basics').resourceScope.resourceGroup.id]",
+            "subscriptionId": "[steps('basics').resourceScope.subscription.subscriptionId]"
         }
     }
 }
