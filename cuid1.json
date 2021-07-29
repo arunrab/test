@@ -19,37 +19,6 @@
                             }
                         },
                         {
-                            "name": "_artifactsLocation",
-                            "type": "Microsoft.Common.TextBox",
-                            "label": "_artifacts Location",
-                            "defaultValue": "https://raw.githubusercontent.com/Azure/Moodle/master/",
-                            "toolTip": "The base URI where artifacts required by this template are located. When the template is deployed using the accompanying scripts, a private location in the subscription will be used and this value will be automatically generated.",
-                            "constraints": {
-                                "required": false,
-                                "regex": "",
-                                "validationMessage": ""
-                            },
-                            "visible": true
-                        },
-                        {
-                            "name": "_artifactsLocationSasToken",
-                            "type": "Microsoft.Common.PasswordBox",
-                            "label": {
-                                "password": "_artifacts Location Sas Token",
-                                "confirmPassword": "Confirm password"
-                            },
-                            "toolTip": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated.",
-                            "constraints": {
-                                "required": false,
-                                "regex": "",
-                                "validationMessage": ""
-                            },
-                            "options": {
-                                "hideConfirmation": true
-                            },
-                            "visible": true
-                        },
-                        {
                             "name": "moodleType",
                             "type": "Microsoft.Common.DropDown",
                             "label": "Select Moodle type",
