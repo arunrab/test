@@ -66,6 +66,18 @@
                             },
                             "visible": true
                         }, {
+                            "name": "sshPublicKey",
+                            "type": "Microsoft.Common.TextBox",
+                            "label": "Ssh Public Key",
+                            "defaultValue": "",
+                            "toolTip": "ssh public key",
+                            "constraints": {
+                                "required": true,
+                                "regex": "",
+                                "validationMessage": ""
+                            },
+                            "visible": true
+                        }, {
                             "name": "redisDeploySwitch",
                             "type": "Microsoft.Common.DropDown",
                             "label": "Redis Deploy Switch",
@@ -83,19 +95,13 @@
                                 ]
                             },
                             "visible": true
-                        }, {
-                            "name": "sshPublicKey",
-                            "type": "Microsoft.Common.TextBox",
-                            "label": "Ssh Public Key",
-                            "defaultValue": "",
-                            "toolTip": "ssh public key",
-                            "constraints": {
-                                "required": true,
-                                "regex": "",
-                                "validationMessage": ""
-                            },
-                            "visible": true
-                        }, {
+                        }
+                    ]
+                }, {
+                    "name": "advanced",
+                    "label": "Advanced",
+                    "elements": [
+                        {
                             "name": "autoscaleVmSku",
                             "type": "Microsoft.Common.TextBox",
                             "label": "Autoscale Vm Sku",
@@ -107,7 +113,8 @@
                                 "validationMessage": ""
                             },
                             "visible": "[or(equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
-                        }, {
+                        },
+                        {
                             "name": "autoscaleVmCountMax",
                             "type": "Microsoft.Common.TextBox",
                             "label": "Autoscale Vm Count Max",
@@ -119,7 +126,8 @@
                                 "validationMessage": ""
                             },
                             "visible": "[equals(steps('basics').moodleType,'largeHa')]"
-                        }, {
+                        },
+                        {
                             "name": "osDiskStorageType",
                             "type": "Microsoft.Common.DropDown",
                             "label": "Os Disk Storage Type",
@@ -127,17 +135,20 @@
                             "toolTip": "Azure storage type for all VMs' OS disks. With htmlLocalCopySwith true, Premium_LRS (SSD) is strongly recommended, as PHP files will be served from OS disks.",
                             "constraints": {
                                 "required": false,
-                                "allowedValues": [{
+                                "allowedValues": [
+                                    {
                                         "label": "Premium_LRS",
                                         "value": "Premium_LRS"
-                                    }, {
+                                    },
+                                    {
                                         "label": "Standard_LRS",
                                         "value": "Standard_LRS"
                                     }
                                 ]
                             },
                             "visible": false
-                        }, {
+                        },
+                        {
                             "name": "fileServerType",
                             "type": "Microsoft.Common.DropDown",
                             "label": "File Server Type",
@@ -145,26 +156,32 @@
                             "toolTip": "File server type: GlusterFS, NFS, and NFS-HA (2-VM highly available NFS cluster)",
                             "constraints": {
                                 "required": false,
-                                "allowedValues": [{
+                                "allowedValues": [
+                                    {
                                         "label": "gluster",
                                         "value": "gluster"
-                                    }, {
+                                    },
+                                    {
                                         "label": "nfs",
                                         "value": "nfs"
-                                    }, {
+                                    },
+                                    {
                                         "label": "nfs-ha",
                                         "value": "nfs-ha"
-                                    }, {
+                                    },
+                                    {
                                         "label": "nfs-byo",
                                         "value": "nfs-byo"
-                                    }, {
+                                    },
+                                    {
                                         "label": "azurefiles",
                                         "value": "azurefiles"
                                     }
                                 ]
                             },
                             "visible": "[or(equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
-                        }, {
+                        },
+                        {
                             "name": "OSDiskSizeInGB",
                             "type": "Microsoft.Common.TextBox",
                             "label": "OS Disk Size In GB",
@@ -176,7 +193,8 @@
                                 "validationMessage": ""
                             },
                             "visible": "[or(equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
-                        }, {
+                        },
+                        {
                             "name": "fileServerDiskSize",
                             "type": "Microsoft.Common.TextBox",
                             "label": "File Server Disk Size",
@@ -188,7 +206,8 @@
                                 "validationMessage": ""
                             },
                             "visible": "[or(equals(steps('basics').moodleType,'smallToMid'), equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
-                        }, {
+                        },
+                        {
                             "name": "storageAccountType",
                             "type": "Microsoft.Common.DropDown",
                             "label": "Storage Account Type",
@@ -196,23 +215,28 @@
                             "toolTip": "Storage Account type. This storage account is only for the Moodle ObjectFS plugin and/or the (currently disabled) Azure Files file share option",
                             "constraints": {
                                 "required": false,
-                                "allowedValues": [{
+                                "allowedValues": [
+                                    {
                                         "label": "Standard_LRS",
                                         "value": "Standard_LRS"
-                                    }, {
+                                    },
+                                    {
                                         "label": "Standard_GRS",
                                         "value": "Standard_GRS"
-                                    }, {
+                                    },
+                                    {
                                         "label": "Standard_ZRS",
                                         "value": "Standard_ZRS"
-                                    }, {
+                                    },
+                                    {
                                         "label": "Premium_LRS",
                                         "value": "Premium_LRS"
                                     }
                                 ]
                             },
                             "visible": "[or(equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
-                        }, {
+                        },
+                        {
                             "name": "searchType",
                             "type": "Microsoft.Common.DropDown",
                             "label": "Search Type",
@@ -220,20 +244,24 @@
                             "toolTip": "options of moodle global search",
                             "constraints": {
                                 "required": false,
-                                "allowedValues": [{
+                                "allowedValues": [
+                                    {
                                         "label": "none",
                                         "value": "none"
-                                    }, {
+                                    },
+                                    {
                                         "label": "azure",
                                         "value": "azure"
-                                    }, {
+                                    },
+                                    {
                                         "label": "elastic",
                                         "value": "elastic"
                                     }
                                 ]
                             },
                             "visible": "[or(equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
-                        }, {
+                        },
+                        {
                             "name": "mysqlPgresVcores",
                             "type": "Microsoft.Common.DropDown",
                             "label": "Mysql Pgres Vcores",
@@ -241,29 +269,36 @@
                             "toolTip": "MySql/Postgresql vCores. For Basic tier, only 1 & 2 are allowed. For GeneralPurpose tier, 2, 4, 8, 16, 32 are allowed. For MemoryOptimized, 2, 4, 8, 16 are allowed.",
                             "constraints": {
                                 "required": false,
-                                "allowedValues": [{
+                                "allowedValues": [
+                                    {
                                         "label": "1",
                                         "value": "1"
-                                    }, {
+                                    },
+                                    {
                                         "label": "2",
                                         "value": "2"
-                                    }, {
+                                    },
+                                    {
                                         "label": "4",
                                         "value": "4"
-                                    }, {
+                                    },
+                                    {
                                         "label": "8",
                                         "value": "8"
-                                    }, {
+                                    },
+                                    {
                                         "label": "16",
                                         "value": "16"
-                                    }, {
+                                    },
+                                    {
                                         "label": "32",
                                         "value": "32"
                                     }
                                 ]
                             },
                             "visible": "[or(equals(steps('basics').moodleType,'smallToMid'), equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
-                        }, {
+                        },
+                        {
                             "name": "mysqlPgresStgSizeGB",
                             "type": "Microsoft.Common.TextBox",
                             "label": "Mysql Pgres Stg Size GB",
@@ -275,7 +310,8 @@
                                 "validationMessage": ""
                             },
                             "visible": "[or(equals(steps('basics').moodleType,'smallToMid'), equals(steps('basics').moodleType,'maximal'), equals(steps('basics').moodleType,'largeHa'))]"
-                        }, {
+                        },
+                        {
                             "name": "loadBalancerSku",
                             "type": "Microsoft.Common.DropDown",
                             "label": "Load Balancer Sku",
@@ -283,17 +319,20 @@
                             "toolTip": "Loadbalancer SKU",
                             "constraints": {
                                 "required": false,
-                                "allowedValues": [{
+                                "allowedValues": [
+                                    {
                                         "label": "Basic",
                                         "value": "Basic"
-                                    }, {
+                                    },
+                                    {
                                         "label": "Standard",
                                         "value": "Standard"
                                     }
                                 ]
                             },
                             "visible": "[or(equals(steps('basics').moodleType,'minimal'), equals(steps('basics').moodleType,'largeHa'))]"
-                        }, {
+                        },
+                        {
                             "name": "azureBackupSwitch",
                             "type": "Microsoft.Common.DropDown",
                             "label": "Azure Backup Switch",
@@ -301,10 +340,12 @@
                             "toolTip": "Switch to configure AzureBackup and enlist VM's",
                             "constraints": {
                                 "required": false,
-                                "allowedValues": [{
+                                "allowedValues": [
+                                    {
                                         "label": "true",
                                         "value": true
-                                    }, {
+                                    },
+                                    {
                                         "label": "false",
                                         "value": false
                                     }
