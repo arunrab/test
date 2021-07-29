@@ -341,8 +341,6 @@
         },
         "outputs": {
             "parameters": {
-                "_artifactsLocation": "[steps('basics')._artifactsLocation]",
-                "_artifactsLocationSasToken": "[steps('basics')._artifactsLocationSasToken]",
                 "azureBackupSwitch": "[steps('advanced').azureBackupSwitch]",
                 "redisDeploySwitch": "[steps('advanced').redisDeploySwitch]",
                 "sshPublicKey": "[steps('basics').sshPublicKey]",
