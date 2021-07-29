@@ -4,10 +4,12 @@
         "kind": "Form",
         "properties": {
             "title": "Create a Moodle",
-            "steps": [{
+            "steps": [
+                {
                     "name": "basics",
                     "label": "Basics",
-                    "elements": [{
+                    "elements": [
+                        {
                             "name": "resourceScope",
                             "type": "Microsoft.Common.ResourceScope",
                             "location": {
@@ -15,7 +17,8 @@
                                     "microsoft.resources/resourcegroups"
                                 ]
                             }
-                        }, {
+                        },
+                        {
                             "name": "_artifactsLocation",
                             "type": "Microsoft.Common.TextBox",
                             "label": "_artifacts Location",
@@ -27,7 +30,8 @@
                                 "validationMessage": ""
                             },
                             "visible": true
-                        }, {
+                        },
+                        {
                             "name": "_artifactsLocationSasToken",
                             "type": "Microsoft.Common.PasswordBox",
                             "label": {
@@ -44,7 +48,8 @@
                                 "hideConfirmation": true
                             },
                             "visible": true
-                        }, {
+                        },
+                        {
                             "name": "moodleType",
                             "type": "Microsoft.Common.DropDown",
                             "label": "Select Moodle type",
@@ -52,20 +57,24 @@
                             "toolTip": "Select from among different profiles of Moodle",
                             "constraints": {
                                 "required": true,
-                                "allowedValues": [{
+                                "allowedValues": [
+                                    {
                                         "label": "Large - High Availability",
                                         "value": "largeHa"
-                                    }, {
+                                    },
+                                    {
                                         "label": "Maximal",
                                         "value": "maximal"
-                                    },  {
+                                    },
+                                    {
                                         "label": "Small to Mid",
                                         "value": "smallToMid"
                                     }
                                 ]
                             },
                             "visible": true
-                        }, {
+                        },
+                        {
                             "name": "sshPublicKey",
                             "type": "Microsoft.Common.TextBox",
                             "label": "Ssh Public Key",
@@ -77,7 +86,14 @@
                                 "validationMessage": ""
                             },
                             "visible": true
-                        }, {
+                        }
+                    ]
+                },
+                {
+                    "name": "advanced",
+                    "label": "Advanced",
+                    "elements": [
+                        {
                             "name": "redisDeploySwitch",
                             "type": "Microsoft.Common.DropDown",
                             "label": "Redis Deploy Switch",
@@ -85,22 +101,19 @@
                             "toolTip": "Switch to deploy a redis cache or not. Note that certain versions of Moodle (e.g., 3.1) don't work well with Redis, so use this only for known well-working Moodle versions (e.g., 3.4).",
                             "constraints": {
                                 "required": false,
-                                "allowedValues": [{
+                                "allowedValues": [
+                                    {
                                         "label": "true",
                                         "value": true
-                                    }, {
+                                    },
+                                    {
                                         "label": "false",
                                         "value": false
                                     }
                                 ]
                             },
                             "visible": true
-                        }
-                    ]
-                }, {
-                    "name": "advanced",
-                    "label": "Advanced",
-                    "elements": [
+                        },
                         {
                             "name": "autoscaleVmSku",
                             "type": "Microsoft.Common.TextBox",
@@ -362,7 +375,7 @@
                 "_artifactsLocation": "[steps('basics')._artifactsLocation]",
                 "_artifactsLocationSasToken": "[steps('basics')._artifactsLocationSasToken]",
                 "azureBackupSwitch": "[steps('advanced').azureBackupSwitch]",
-                "redisDeploySwitch": "[steps('basics').redisDeploySwitch]",
+                "redisDeploySwitch": "[steps('advanced').redisDeploySwitch]",
                 "sshPublicKey": "[steps('basics').sshPublicKey]",
                 "autoscaleVmSku": "[steps('advanced').autoscaleVmSku]",
                 "autoscaleVmCountMax": "[steps('advanced').autoscaleVmCountMax]",
