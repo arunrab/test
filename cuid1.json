@@ -354,7 +354,7 @@
                 "fileServerDiskSize": "[steps('advanced').fileServerDiskSize]",
                 "storageAccountType": "[steps('advanced').storageAccountType]",
                 "searchType": "[steps('advanced').searchType]",
-                "loadBalancerSku": "[steps('advanced').loadBalancerSku]",
+                "loadBalancerSku": "[steps('advanced').loadBalancerSku]"
             },
             "kind": "ResourceGroup",
             "location": "[steps('basics').resourceScope.location.name]",
